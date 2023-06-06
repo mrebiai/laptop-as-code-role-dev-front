@@ -1,0 +1,29 @@
+---
+- name: Chrome - GPG key
+  tags: chrome
+  become: true
+  apt_key:
+    url: https://dl.google.com/linux/linux_signing_key.pub
+    keyring: /usr/share/keyrings/google_linux_signing_key.gpg
+    state: present
+
+- name: Chrome - Get architecture
+  tags: chrome
+  shell: dpkg --print-architecture
+  register: architecture
+
+- name: Chrome - Repository
+  tags: chrome
+  become: true
+  apt_repository:
+    repo: deb [arch={{ architecture.stdout }} signed-by=/usr/share/keyrings/google_linux_signing_key.gpg] https://dl.google.com/linux/chrome/deb/ stable main
+    filename: google-chrome
+    state: present
+
+- name: Chrome - Installation
+  tags: chrome
+  become: true
+  apt:
+    name: google-chrome-stable
+    state: latest
+    update_cache: yes

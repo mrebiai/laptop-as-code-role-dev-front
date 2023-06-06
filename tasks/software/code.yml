@@ -1,0 +1,12 @@
+---
+- name: Code - Install VSCode
+  tags: code
+  become: true
+  snap:
+    name: code
+    classic: yes
+    state: present
+
+- name: Code - Install Asciidoctor extension
+  tags: code
+  shell: code --install-extension asciidoctor.asciidoctor-vscode

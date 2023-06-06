@@ -1,0 +1,34 @@
+galaxy_info:
+  author: mrebiai
+  description: Dev front installation
+  company: mrebiai
+
+  issue_tracker_url: https://github.com/mrebiai/laptop-as-code-role-dev-front/issues
+
+  # Choose a valid license ID from https://spdx.org - some suggested licenses:
+  # - BSD-3-Clause (default)
+  # - MIT
+  # - GPL-2.0-or-later
+  # - GPL-3.0-only
+  # - Apache-2.0
+  # - CC-BY-4.0
+  license: Apache-2.0
+
+  min_ansible_version: "2.1"
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+
+  galaxy_tags:
+    - linux 
+
+dependencies:
+# tag::dependencies[]
+  - role: laptop-as-code-role-base
+    src: git@github.com:mrebiai/laptop-as-code-role-base.git
+    scm: git
+    version: main
+# end::dependencies[]
